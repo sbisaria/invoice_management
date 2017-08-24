@@ -11,6 +11,7 @@ namespace AutomobileServiceProvider
         public string Name { get; set; }
         public string ModelNo { get; set; }
         public string ChasisNo { get; set; }
+        public int Id { get; set; }
         public Color VehicleColor { get; set; }
         public Gear Gear { get; set; }
         public Type Category { get; set; }

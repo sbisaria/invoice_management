@@ -8,33 +8,40 @@ namespace AutomobileServiceProvider
 {
     public class VehicleManager
     {
-        public List<Vehicle> Vehicles { get; set; }
-        public List<Vehicle> SoldVehicle { get; set; }
-        public List<Vehicle> RentedVehicles { get; set; }
-        
-        public bool AddVehicle()
+        private List<Vehicle> Vehicles { get; }
+        private List<Vehicle> SoldVehicles { get; }
+        private List<Vehicle> RentedVehicles { get; }
+
+        public VehicleManager()
         {
-           
+            Vehicles = new List<Vehicle>();
+            SoldVehicles = new List<Vehicle>();
+            SoldVehicles = new List<Vehicle>();
+        }
+        public bool AddVehicle(Vehicle vehicle)
+        {
+            Vehicles.Add(vehicle);
             return true;
         }
-        public bool RemoveVehicle()
+        public List<Vehicle> RemoveVehicle(string id)
         {
-            
-            return true;
+            var indexToRemove = Vehicles.FindIndex(x => x.Id.Equals(id));
+            Vehicles.RemoveAt(indexToRemove);
+            return Vehicles;
         }
-        public List<string> GetRentableVehicle()
-        {
-            foreach (vehicle in Vehicle)
-                return ;
 
-        }
-        public List<Vehicle> GetRentedVehicle()
+        public List<Vehicle> GetRentableVehicles()
         {
-
+            var rentableVehicles = Vehicles.Where(x => x.Category.Equals(Type.rentable)).ToList();
+            return rentableVehicles;
         }
-        public List<Vehicle> GetSoldVehicle()
+        public List<Vehicle> GetRentedVehicles()
         {
-            return "";
+            return RentedVehicles;
+        }
+        public List<Vehicle> GetSoldVehicles()
+        {
+            return SoldVehicles;
         }
     }
 }
